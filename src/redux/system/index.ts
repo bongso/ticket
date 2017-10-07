@@ -41,9 +41,10 @@ export function session() {
   return async (dispatch, getState) => {
     dispatch({type: SESSION[REQUEST]})
     try {
-      const userInfo: any = await (async _ => {
-        throw new Error('write session manging code')
-      })()
+      const userInfo = getState().persist.userInfo
+      if (!userInfo) {
+        throw new Error('cannot found login information')
+      }
       dispatch({type: SESSION[SUCCESS]})
       dispatch(saveUserInfo(userInfo))
       dispatch(initializeGa(userInfo.id))
