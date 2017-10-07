@@ -3,11 +3,9 @@ import {getGithubIssues, Issue} from '../redux/github/index'
 import {connect} from 'react-redux'
 import {RootState} from '../redux/index'
 import {bindActionCreators} from 'redux'
-import {IfGuestThenGoLogin} from './IfGuestThenGoLogin'
-import {Sidebar} from './Sidebar'
-import {Main} from './Main'
+import {PanelHeader} from './PanelHeader'
 
-export const Home = connect(
+export const Panel = connect(
   (state: RootState) => {
     return {
       issues: state.github.issues
@@ -17,19 +15,14 @@ export const Home = connect(
     getGithubIssues
   }, dispatch)
 )(
-  class Home extends React.Component<Props, State> {
-    constructor(props) {
-      super(props)
-      this.onLoggedIn = this.onLoggedIn.bind(this)
-    }
+  class Panel extends React.Component<Props, State> {
     render() {
       const {issues = []} = this.props
 
       return (
-        <div className={`row home`}>
-          <IfGuestThenGoLogin onLoggedIn={this.onLoggedIn}/>
-          <Sidebar/>
-          <Main/>
+        <div>
+          Panel
+          <PanelHeader/>
           <div>
             {
               issues
@@ -47,14 +40,6 @@ export const Home = connect(
           </div>
         </div>
       )
-    }
-
-    componentDidMount() {
-
-    }
-
-    onLoggedIn() {
-      this.props.getGithubIssues()
     }
   }
 )
