@@ -8,7 +8,7 @@
   "scripts": {
     "tsc": "tsc",
     "dev": "next",
-    "build:dev": "next build",
+    "build:dev": "npm run tsc && next build",
     "build": "npm run tsc && NODE_ENV=production next build",
     "analyze": "npm run tsc && NODE_ENV=production ANALYZE=true next build",
     "start": "next start",
