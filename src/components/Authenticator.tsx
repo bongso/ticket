@@ -41,7 +41,9 @@ export const Authenticator = connect<S, D, O>(
       //fixme: dev hack
       console.warn('fixme: redirection dev hack')
       if (!location.host.includes('localhost')) {
-        location.href = location.href.replace(location.host, 'location:3000')
+        if (confirm('localhost로 리다이렉션 하시겠습니까?')) {
+          return location.href = location.href.replace(location.host, 'location:3000')
+        }
       }
       //
       const {accessToken} = this.props
