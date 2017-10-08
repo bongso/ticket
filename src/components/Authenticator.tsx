@@ -42,7 +42,7 @@ export const Authenticator = connect<S, D, O>(
       console.warn('fixme: redirection dev hack')
       if (!location.host.includes('localhost')) {
         if (confirm('localhost로 리다이렉션 하시겠습니까?')) {
-          return location.href = location.href.replace(location.origin, 'http://location:3000')
+          return location.href = location.href.replace(location.origin, 'http://localhost:3000')
         }
       }
       //
