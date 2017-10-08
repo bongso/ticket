@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 import {RootState} from '../redux/index'
 import {bindActionCreators} from 'redux'
 import {IfGuestThenGoLogin} from './IfGuestThenGoLogin'
+import {Sidebar} from './Sidebar'
+import {Main} from './Main'
 
 export const Home = connect(
   (state: RootState) => {
@@ -26,19 +28,8 @@ export const Home = connect(
       return (
         <div className={`row home`}>
           <IfGuestThenGoLogin onLoggedIn={this.onLoggedIn}/>
-          home
-          <div>
-            {
-              issues
-                .map(issue => {
-                  return (
-                    <div>
-                      {issue.title}
-                    </div>
-                  )
-                })
-            }
-          </div>
+          <Sidebar/>
+          <Main/>
         </div>
       )
     }
