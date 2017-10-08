@@ -8,9 +8,10 @@
   "scripts": {
     "tsc": "tsc",
     "dev": "next",
-    "build:dev": "npm run tsc && next build",
-    "build": "npm run tsc && NODE_ENV=production next build",
+    "build:dev": "npm run tsc && next build && npm run export",
+    "build": "npm run tsc && NODE_ENV=production next build && npm run export",
     "analyze": "npm run tsc && NODE_ENV=production ANALYZE=true next build",
+    "export": "next export",
     "start": "next start",
     "test": "jest"
   },
