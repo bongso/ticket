@@ -15,13 +15,19 @@ export const reducer: Reducer<PersistState> = (state = defaultState, action) => 
 }
 
 enum ActionTypes {
-  SAVE_USER_INFO = 'save user information'
+  SAVE_USER_INFO = 'save user information',
+  REMOVE_USER_INFO = 'remove user information',
 }
 
 export function saveUserInfo(userInfo) {
   return {
     type:    ActionTypes.SAVE_USER_INFO,
     payload: userInfo
+  }
+}
+export function removeUserInfo() {
+  return {
+    type:    ActionTypes.REMOVE_USER_INFO
   }
 }
 

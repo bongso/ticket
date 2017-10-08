@@ -27,7 +27,7 @@ export const headers = getState => {
 
 export const oAuthHeader = getState => {
   const state: RootState = getState()
-  const {token = '027afc0b52366e040ab6828c72e6f9c22ceb67da'} = state.persist.userInfo || {}
+  const {token} = state.persist.userInfo || {} as any
   const Authorization = `Bearer ${token}`
 
   console.log({Authorization})

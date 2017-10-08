@@ -5,6 +5,7 @@ import {SystemState} from '../redux/system/index'
 import {PersistState} from '../redux/persist/index'
 import {bindActionCreators} from 'redux'
 import {changeUrl} from '../redux/router/index'
+import {ROUTES} from '../constants/routes'
 
 export const IfGuestThenGoLogin = connect<S, D, O>(
   (state: RootState) => {
@@ -45,7 +46,7 @@ export const IfGuestThenGoLogin = connect<S, D, O>(
 
     private protectedPage() {
       alert('로그인이 필요합니다.')
-      this.props.changeUrl('/login')
+      this.props.changeUrl(ROUTES.LOGIN)
     }
 
     private loggedIn() {
