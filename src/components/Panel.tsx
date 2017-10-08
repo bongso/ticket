@@ -18,6 +18,9 @@ export const Panel = connect(
   class Panel extends React.Component<Props, State> {
     render() {
       const {issues = []} = this.props
+      const repos = issues
+        .map(issue => issue.repository.name)
+      const uniqueRepos = Array.from( new Set(repos) )
 
       return (
         <div>
@@ -25,16 +28,21 @@ export const Panel = connect(
           <PanelHeader/>
           <div>
             {
-              issues
-                .map(issue => {
-                  return (
-                    <div>
-                      // panel-body
-                      {issue.state}
-                      {issue.title}
-                      {issue.number}
-                    </div>
-                  )
+              uniqueRepos
+                .map(repo => {
+                  return  issues
+                    .filter(issue => {
+                      return issue.repository.name == repo
+                    })
+                    .map(issue => {
+                      return (
+                        <div className="row">
+                          <div className="col-2"> [{issue.state}|{issue.comments}] </div>
+                          <div className="col-6"> <a href={issue.html_url} target={'_blank'}>{issue.title}</a> #{issue.number}</div>
+                          <div className="col-3"> <a href={issue.repository.html_url} target={'_blank'}> {issue.repository.name}</a> </div>
+                        </div>
+                      )
+                    })
                 })
             }
           </div>

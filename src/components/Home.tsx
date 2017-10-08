@@ -30,21 +30,6 @@ export const Home = connect(
           <IfGuestThenGoLogin onLoggedIn={this.onLoggedIn}/>
           <Sidebar/>
           <Main/>
-          <div>
-            {
-              issues
-                .map(issue => {
-                  return (
-                    <div>
-                      // panel-body
-                      {issue.state}
-                      {issue.title}
-                      {issue.number}
-                    </div>
-                  )
-                })
-            }
-          </div>
         </div>
       )
     }
