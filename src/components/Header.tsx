@@ -5,9 +5,9 @@ import Link from 'next/link'
 import {ROUTES} from '../constants/routes'
 import {connect} from 'react-redux'
 import {RootState} from '../redux/index'
-// import {Nav} from './Nav'
-// import {UserBanner} from './UserBanner'
 import {SITE_IMAGE} from '../constants/env'
+import {UserBanner} from './UserBanner'
+import {SFC} from 'react'
 
 interface S {
   me: object
@@ -33,15 +33,19 @@ export const Header = connect<S, D, O>(
           <div className="col-6">
             <Link href={ROUTES.HOME}>
               <a>
-                <img src={SITE_IMAGE} width={32} height={32}/>
+                <img src={SITE_IMAGE} width={32} height={32} />
               </a>
             </Link>
           </div>
-          {/*{me && <UserBanner className="col-6"/>}*/}
-          {/*{me && <Nav className="col-12" user={me}/>}*/}
+          {me
+            ? <UserBanner className="col-6" />
+            : <Login />
+          }
+          {/*<Nav className="col-12" user={me}/>*/}
         </header>
       )
     }
   }
 )
 
+const Login: SFC<{}> = props => <a href={ROUTES.LOGIN}>로그인</a>
